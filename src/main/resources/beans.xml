@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xsi:schemaLocation="http://www.pandawork.net/web/schema/mvc
+	 http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+	http://www.springframework.org/schema/beans	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+	http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
+	http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd"
+       default-autowire="byName" default-lazy-init="false" >
+    <context:property-placeholder location="classpath*:db.properties" />
+    <!--使用了全类名 com.xiaozl.spring.hellworld.HelloWorld 用到了java反射的方式在IOC容器中创建bean，这就要求在HelloWorld（helloWorld bean）类中中得有无参数的构造器
+      bean:其实就是具备某些特征的java类
+      id:标识容器中的bean，这个id是唯一的
+      id：Bean 的名称。
+      在 IOC 容器中必须是唯一的
+      若 id 没有指定，Spring 自动将权限定性类名作为 Bean 的名字
+      id 可以指定多个名字，名字之间可用逗号、分号、或空格分隔
+      这里使用的是setter方法进行注入
+      -->
+    <bean id="helloWorld1" class="com.xiaozl.spring.hellworld.HelloWorld" scope="prototype">
+        <property name="userName" value="xiaozl"/>
+    </bean>
+
+    <!-- 若一个 bean 有多个构造器, 如何通过构造器来为 bean 的属性赋值 -->
+    <!-- 可以根据 index 和 value 进行更加精确的定位. (了解) -->
+    <!--如果没有index就是按照在Car类中参数的顺序进行赋值，同时使用type来区分重载的构造方法.主要就是使用index和type-->
+    <!-- bean的生命周期仅仅对这个bean，在构造的时候回调用init1，在容器关闭的时候回调用destroy2，如果没有配置，会调用默认的初始化方法（不做任何处理） -->
+    <bean id="car1" init-method="init1" destroy-method="destroy1" class="com.xiaozl.spring.hellworld.Car">
+        <constructor-arg value="KUGA" index="1"></constructor-arg>
+        <constructor-arg value="ChangAnFord" index="0"></constructor-arg>
+        <constructor-arg value="250000" type="float"></constructor-arg>
+    </bean>
+
+    <bean id="car2" class="com.xiaozl.spring.hellworld.Car">
+        <constructor-arg value="ChangAnMazda"></constructor-arg>
+        <!-- 下面这种方法也是使用构造器注入,通过value节点给属性赋值，若字面值中包含特殊字符, 则可以使用 DCDATA 来进行赋值. (了解) -->
+        <constructor-arg>
+            <!--<ATARZA> 其中<> 是特殊符号 把他放到<![CDATA[属性值]]> ，且值能够用这种方法进行注入-->
+            <value><![CDATA[<ATARZA>]]></value>
+        </constructor-arg>
+        <constructor-arg value="180" type="int"></constructor-arg>
+    </bean>
+
+
+    <bean id="dataSource" class="com.jolbox.bonecp.BoneCPDataSource">
+        <property name="username" value="${user}"/>
+        <property name="password" value="${password}"/>
+        <property name="jdbcUrl" value="${jdbcurl}" />
+        <property name="driverClass" value="${driverclass}" />
+    </bean>
+
+    <bean class="com.xiaozl.spring.hellworld.MyBeanPostProcessor"></bean>
+
+</beans>
