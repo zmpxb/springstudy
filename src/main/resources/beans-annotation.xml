@@ -6,10 +6,10 @@
 
     <!--指定Spring IOC 容器扫描的包-->
     <!--use-default-filters：默认是true-->
-    <context:component-scan base-package="com.xiaozl.spring.annotation" use-default-filters="false">
+    <context:component-scan base-package="com.xiaozl.spring.annotation">
         <!--表示包中加了org.springframework.stereotype.Repository类型注解(@Respository)不扫描。-->
         <!--<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Repository"></context:exclude-filter>-->
         <!--其中context:include-filter不能和<context:exclude-filter> 同时使用-->
-        <context:include-filter type="assignable" expression="com.xiaozl.spring.annotation.controller.UserController"></context:include-filter>
+        <!--<context:include-filter type="assignable" expression="com.xiaozl.spring.annotation.controller.UserController"></context:include-filter>-->
     </context:component-scan>
 </beans>

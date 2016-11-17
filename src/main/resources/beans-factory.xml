@@ -14,7 +14,7 @@
 
     <!--配置工厂的实例-->
     <bean id="carFactory" class="com.xiaozl.spring.factory.InstanceCarFactory"></bean>
-<!--
+    <!--
     factory-bean:指向静态工厂方法的全类名
     factory-method：指向静态工厂方法的名字
     constructor-arg：如果工厂方法要传递参数，使用constructor-arg类配置参数-->

@@ -17,6 +17,7 @@ public class Main {
         System.out.println(to);
 
         UserController userController = (UserController) context.getBean("userController");
+        userController.execute();
         System.out.println(userController);
 
         // 像这种接口和实现如果@Repository没有指定名称，则bean的名字是实现类的名字，在这里要用(UserRepository) context.getBean("userRepositoryImpl");

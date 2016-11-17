@@ -24,13 +24,13 @@ public class Main {
         //</bean>
         //
 //        HelloWorld helloWorld = (HelloWorld) context.getBean("helloWorld1");
-        HelloWorld helloWorld2 = (HelloWorld) context.getBean("helloWorld1");
+//        HelloWorld helloWorld2 = (HelloWorld) context.getBean("helloWorld1");
         //根据类型来获取 bean 的实例: 要求在  IOC 容器中只有一个与之类型匹配的 bean, 若有多个则会抛出异常.
         //一般情况下, 该方法可用, 因为一般情况下, 在一个 IOC 容器中一个类型对应的 bean 也只有一个.
-        //HelloWorld helloWorld1 = (HelloWorld) context.getBean(HelloWorld.class);
+//        HelloWorld helloWorld1 = (HelloWorld) context.getBean(HelloWorld.class);
         // 下面这种方法获取bean要求xml文件中的HelloWorld类型的bean唯一
-        //HelloWorld helloWorld1 = (HelloWorld) context.getBean(HelloWorld.class);
-
+        HelloWorld helloWorld = (HelloWorld) context.getBean(HelloWorld.class);
+//        System.out.println(helloWorld1 == helloWorld);
         Car car1 = (Car) context.getBean("car1");
         context.close();
         System.out.println(car1.toString());

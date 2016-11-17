@@ -28,10 +28,10 @@
     <!-- 可以根据 index 和 value 进行更加精确的定位. (了解) -->
     <!--如果没有index就是按照在Car类中参数的顺序进行赋值，同时使用type来区分重载的构造方法.主要就是使用index和type-->
     <!-- bean的生命周期仅仅对这个bean，在构造的时候回调用init1，在容器关闭的时候回调用destroy2，如果没有配置，会调用默认的初始化方法（不做任何处理） -->
-    <bean id="car1" init-method="init1" destroy-method="destroy1" class="com.xiaozl.spring.hellworld.Car">
+    <bean id="car1" init-method="init1" destroy-method="destroy1" class="com.xiaozl.spring.hellworld.Car" scope="prototype">
         <constructor-arg value="KUGA" index="1"></constructor-arg>
         <constructor-arg value="ChangAnFord" index="0"></constructor-arg>
-        <constructor-arg value="250000" type="float"></constructor-arg>
+        <constructor-arg value="250000"   type="float"></constructor-arg>
     </bean>
 
     <bean id="car2" class="com.xiaozl.spring.hellworld.Car">

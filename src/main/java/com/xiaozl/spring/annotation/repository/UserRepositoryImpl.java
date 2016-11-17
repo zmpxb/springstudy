@@ -9,6 +9,6 @@ import org.springframework.stereotype.Repository;
 public class UserRepositoryImpl implements  UserRepository{
     // 这里的注解@Repository 其实是value= "userRepository"
     public void save() {
-        System.out.println("xiaozl");
+        System.out.println("userRepository save");
     }
 }
